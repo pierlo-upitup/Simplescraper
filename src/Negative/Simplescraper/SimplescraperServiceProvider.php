@@ -30,7 +30,10 @@ class SimplescraperServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		
+		// TODO add config parts
+		// 
+		// 
+		// 
 		// TODO understand what this does...
 		$this->app['simplescraper'] = $this->app->share(function($app){
 			return new Simplescraper($app['view']);
