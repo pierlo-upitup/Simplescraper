@@ -2,12 +2,18 @@
 
 use Negative\Simplescraper\opengraph\OpenGraph as OpenGraph;
 
-use \Config;
-use \Exception;
 
 class Simplescraper {
 
 	private $url;
+
+	private $config;
+
+	public function __construct(ScraperInterface $scraper, array $config = array()) 
+	{
+		$this->scraper = $scraper;
+		$this->config = $config;
+	}
 
 	/**
 	 * Get info about a URL.  The response is an Response object that has:
@@ -20,44 +26,36 @@ class Simplescraper {
 	public function lookup($url)
 	{
 		$this->url = $this->_sanitize_url($url);
-
 		
 		// Look for Open Graph tags as well as standard meta tags. This call
 		// will get regular title and description metas.
-		$graph = OpenGraph::fetch($this->url);
+		// $graph = OpenGraph::fetch($this->url);
 
-		if (! $graph) throw new Exception('URL could not be scraped: '.$this->url);
+		$data = $this->scraper->fetch($url);
 
-		// Make a new object from the response. Put image in an array so the resposne
-		// is the same whether we have to scrape for images or not.
-		$response = new Response($graph);
+		if ( empty($data) ) throw new \Exception('URL could not be scraped: '.$this->url);
 		
-		// Support for OpenGraph image ? TODO.
-		/*
-		if ( ! empty($graph->image)) {
-			if ($graph->image_width > 500) {
-				$response->images = array($this->parse_ref($graph->image, $url));
-			}
-		}
-		*/
 
-		// If no images were fetched, scrape the page for images
-		if (empty($response->images) || Config::get('simplescraper::always_scrape_imgs')) {			
-			$response->images = $this->_scrape_images($response->HTML);
+		// Scrape images?
+		if ( array_key_exists('always_scrape_imgs', $this->config) && 
+			true === $this->config['always_scrape_imgs'] ) {
+				$data['images'] = $this->_scrape_images($data['HTML']);
 		}
 
 		// Download images to the local filesystem
-		if ( Config::has('simplescraper::download_dir') && !empty($response->images)) {	
-			$response->images = $this->_download_images($response->images);
+		if ( array_key_exists('download_dir', $this->config) && !empty($data['images']) ) {	
+			$data['images'] = $this->_download_images($data['images']);
 		}
 
 		// Clean up old files?
-		if ( Config::has('simplescraper::download_ttl') && Config::get('simplescraper::download_ttl') > 0) {
+		if ( array_key_exists('download_ttl', $this->config) && $this->config['download_ttl'] > 0) {
 			$this->_cleanup();
 		}
 
+		unset($data['HTML']);
+		
 		// Return findings
-		return $response;
+		return $data;
 	}
 	
 	/**
@@ -146,7 +144,7 @@ class Simplescraper {
 	private function _download_images($imgs) {
 		
 		// Parse minimum size requirement
-		$minimum = Config::get('simplescraper::minimum_size');
+		$minimum = $this->config['minimum_size'];
 		if (!empty($minimum)) $minimum = explode('x', $minimum);
 		
 		// Loop through imgs
@@ -154,7 +152,7 @@ class Simplescraper {
 		foreach($imgs as $i => $img) {
 
 			// Figure out where to store the image
-			$dst = Config::get('simplescraper::download_dir');
+			$dst = $this->config['download_dir'];
 
 			if ( ! \File::exists($dst)) \File::makeDirectory($dst);
 
@@ -189,7 +187,7 @@ class Simplescraper {
 			
 			// Update the path			
 			$downloads[] = str_replace(public_path(), '', $dst);
-			if (count($downloads) >= Config::get('simplescraper::max_imgs')) break;			
+			if ( count($downloads) >= $this->config['max_imgs'] ) break;			
 		}
 		
 		// Return the images
@@ -204,10 +202,10 @@ class Simplescraper {
 	 */
 	private function _cleanup()
 	{
-		$files = glob(Config::get('simplescraper::download_dir')."*");
+		$files = glob( $this->config['download_dir']."*");
 	    foreach($files as $file) {
 	        if(is_file($file)
-	        && time() - filemtime($file) >= Config::get('simplescraper::download_ttl')) { 
+	        && time() - filemtime($file) >= $this->config['download_ttl']) { 
 	            unlink($file);
 	        }
 	    }

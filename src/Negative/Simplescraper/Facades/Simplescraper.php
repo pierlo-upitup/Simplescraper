@@ -9,6 +9,6 @@ class Simplescraper extends Facade {
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return 'simplescraper'; }
+    protected static function getFacadeAccessor() { return 'Simplescraper'; }
 
 }
