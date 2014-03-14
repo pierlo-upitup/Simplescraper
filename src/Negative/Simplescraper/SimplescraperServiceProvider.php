@@ -31,7 +31,7 @@ class SimplescraperServiceProvider extends ServiceProvider {
 	public function register()
 	{
 		// TODO add config parts
-		// 
+		// yeah that stuff like SOLID
 		// 
 		// 
 		// TODO understand what this does...
