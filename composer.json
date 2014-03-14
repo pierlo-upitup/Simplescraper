@@ -1,0 +1,20 @@
+{
+    "name": "negative/simplescraper",
+    "description": "A simple webpage scraper that returns title, description and images.",
+    "authors": [
+        {
+            "name": "Negative",
+            "email": "pg@negativelabs.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.1.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Negative\\Simplescraper": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
