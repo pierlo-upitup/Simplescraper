@@ -21,13 +21,14 @@ class SimplescraperServiceProvider extends ServiceProvider {
      */
     public function register()
     {
-        $this->app->bind('Simplescraper', function($app) {
-            // $view = Config::get('utilities::config.bind_js_vars_to_this_view');
-            // $namespace = Config::get('utilities::config.js_namespace');
+        $this->app->bind('Simplescraper', function($app) { 
+
+        	// Get configuration from package           
         	$config = Config::get('simplescraper::config');
 
-            // $binder = new LaravelViewBinder($app['events'], $view);
-        	$scraper = new CurlScraper();
+        	// Instantiate a Scraper instance
+        	$scraper = new CurlScraper($config);
+        	
             return new Simplescraper($scraper, $config);
         });
     }

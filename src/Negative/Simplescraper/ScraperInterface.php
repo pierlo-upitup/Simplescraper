@@ -2,10 +2,13 @@
 
 
 interface ScraperInterface {
+
 	/**
-	 * Fetch a URL and return an array of data
+	 * Fetches a URL and returns an array with
+	 * title, description, images (absolute or relative path)
+	 * 
 	 * @param  string $URL The URL to be fetched
-	 * @return array The scraped data
+	 * @return array The scraped data 
 	 */
-	public static function fetch($URL);
+	public function fetch($URL);
 }

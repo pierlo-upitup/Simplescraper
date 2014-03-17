@@ -10,12 +10,8 @@ return array(
 	// set to zero to prevent automatic cleanup
 	'download_ttl' => 120, 
 	
-
 	// The maximum number of images to download
-	'max_imgs' => 4,
-	
-	// If there is an open graph image, still scrape additional ones?
-	'always_scrape_imgs' => true,
+	'max_imgs' => 1,
 	
 	// Set a minimum size for the images that are shown.  This requires
 	// a download_dir to be set.
