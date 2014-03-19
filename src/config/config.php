@@ -15,5 +15,5 @@ return array(
 	
 	// Set a minimum size for the images that are shown.  This requires
 	// a download_dir to be set.
-	'minimum_size' => '300x200'
+	// 'minimum_size' => '300x200'
 );

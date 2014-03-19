@@ -22,14 +22,9 @@ class SimplescraperServiceProvider extends ServiceProvider {
     public function register()
     {
         $this->app->bind('Simplescraper', function($app) { 
-
-        	// Get configuration from package           
+        	// Get configuration from package 
         	$config = Config::get('simplescraper::config');
-
-        	// Instantiate a Scraper instance
-        	$scraper = new CurlScraper($config);
-        	
-            return new Simplescraper($scraper, $config);
+            return new Simplescraper($config);
         });
     }
 
