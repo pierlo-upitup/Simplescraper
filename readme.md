@@ -12,4 +12,4 @@ to your app/config.php $providers array
 
 ## Credits
 
-Inspired by the Laraval 3 bundle Scrapeyhttps://github.com/BKWLD/scrapey .
+Inspired by the Laraval 3 bundle Scrapey https://github.com/BKWLD/scrapey .

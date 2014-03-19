@@ -91,7 +91,7 @@ class Simplescraper {
 
 		// Actually download images?
         if ( array_key_exists('download_dir', $this->config) && !empty($page['images']) ) {	
-			// $page['images'] = $this->scraper->downloadImages($page['images']);
+			$page['images'] = $this->scraper->downloadImages($page['images']);
 		}
 
 		// Clean up old files?
