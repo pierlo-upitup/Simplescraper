@@ -27,11 +27,29 @@ Simply call:
 It will return an array like this:
 
 		array(
-			"url" => "http:\/\/www.ikea.com\/us\/en\/catalog\/products\/60202199\/",
+			"url" => "http://www.ikea.com/us/en/catalog/products/60202199/",
 			"title" => "FALSTER Table - gray  - IKEA",
 			"description" => "IKEA - FALSTER, Table, gray , Polystyrene slats are weather-resistant and easy to care for.The furniture is both sturdy and lightweight as the frame is made of rustproof aluminum.You can easily sand down light scratches on the slates with fine sandpaper.",
-			"images" => ["uploads/simplescraper/5329acc4378bb.jpg"
+			"images" => ["uploads/simplescraper/5329acc4378bb.jpg"]
 		)
+
+The config allows for the following options:
+
+	// If defined, download the scraped images to this directory
+	// PLEASE NOTE: use a dedicated folder if you want to use download_ttl
+	'download_dir' => public_path().'/uploads/simplescraper/',
+	
+	// Delete downloded images after (seconds)
+	// set to zero to prevent automatic cleanup
+	'download_ttl' => 120, 
+	
+	// The maximum number of images to download
+	'max_imgs' => 1,
+	
+	// Set a minimum size for the images that are shown.  This requires
+	// a download_dir to be set.
+	'minimum_size' => '300x200'
+
 
 ## Credits
 
