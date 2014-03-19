@@ -1,6 +1,6 @@
 {
     "name": "negative/simplescraper",
-    "description": "A (very) simple URL scraper that returns title, description and images.",
+    "description": "A (very) simple URL scraper that fetches title, description and images.",
     "authors": [
         {
             "name": "Negative",
