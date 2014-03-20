@@ -2,7 +2,7 @@
 
 use Negative\Simplescraper\DOMDocumentParser;
 
-class DOMDocumentParserTest extends TestCase {    
+class DOMDocumentParserTest extends PHPUnit_Framework_TestCase {    
     
     private $parser;
 

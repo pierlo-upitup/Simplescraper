@@ -1,6 +1,6 @@
 <?php
-
-class CurlScraperTest extends TestCase { 
+// todo
+class CurlScraperTest extends PHPUnit_Framework_TestCase { 
     private $scraper;
 /*
     public function setUp()

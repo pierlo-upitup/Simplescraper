@@ -2,7 +2,7 @@
 
 use Negative\Simplescraper\Helpers\InputHelper;
 
-class InputHelperTest extends TestCase { 
+class InputHelperTest extends PHPUnit_Framework_TestCase { 
     
     // Make sure http:// is prepended    
     public function test_it_adds_trailing_scheme()
