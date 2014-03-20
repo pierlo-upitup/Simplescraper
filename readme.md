@@ -1,4 +1,5 @@
 ## Simplescraper
+[![Build Status](https://travis-ci.org/pierlo-upitup/Simplescraper.svg?branch=master)](https://travis-ci.org/pierlo-upitup/Simplescraper)
 
 A (very) simple URL scraper that fetches title, description and images.
 
