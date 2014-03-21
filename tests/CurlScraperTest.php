@@ -2,41 +2,24 @@
 // todo
 class CurlScraperTest extends PHPUnit_Framework_TestCase { 
     private $scraper;
-/*
+
     public function setUp()
     {
+        // Skip image downloads for now
         $config = array(
-            'download_dir' => __DIR__.'/uploads/simplescraper/',
-            'download_ttl' => 120, 
-            'max_imgs' => 1,
-            'minimum_size' => '300x200'
+            'download_dir' => '',
+            'download_ttl' => 0, 
+            'max_imgs' => 0,
+            'minimum_size' => '1x1'
         );
-        
-
         $this->scraper = new Negative\Simplescraper\CurlScraper($config);
     }
 
-    public function test_method_doCurlExec()
+    public function test_it_fetches_url()
     {
 
-        $this->scraper->setURL('http://feynest.dev:8888/products/aida-leather');
-
-        // Need to test privates here. 
-        // Probably not a good idea?
-        // 
-        // http://sebastian-bergmann.de/archives/881-Testing-Your-Privates.html        
-        $method = new ReflectionMethod(
-          'Negative\Simplescraper\CurlScraper', 'doCurlExec'
-        );
-        $method->setAccessible(TRUE);
-        $method->invoke($this->scraper);
-
-        
+        $this->assertContains('Google', $this->scraper->fetch('https://www.google.com'));
     }
-    */
-   public function test_hello()
-   {
-    return true;
-   }
-
+    
+  
 }
