@@ -19,7 +19,9 @@ to your app/config.php $providers array
 
 
 Please check vendor/negative/simplescraper/src/config/config.php for configuration options.
+
 Publish the configuration file by running
+
     php artisan config:publish negative/simplescraper
 
 and edit the configuration file under
